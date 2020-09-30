@@ -39,7 +39,7 @@ var generateReviews = function(numReviews) {
   return data;
 };
 
-const fakeReviews = generateReviews(10);
+const fakeReviews = generateReviews(2000);
 
 Reviews.create(fakeReviews)
   .then(() => {
