@@ -50,6 +50,12 @@ class App extends React.Component {
         var bTime = b.stars.toString();
         return aTime.localeCompare(bTime);
       });
+    } else if (option === 'most helpful') {
+      return data.sort(function compare(a, b) {
+        var aTime = a.helpfulVotes.toString();
+        var bTime = b.helpfulVotes.toString();
+        return bTime.localeCompare(aTime);
+      });
     }
   }
 
@@ -71,6 +77,11 @@ class App extends React.Component {
         console.log('lowest rated')
         this.setState({
           allData: this.sortReviews(this.state.allData, 'lowest rated')
+        })
+      } else if (this.state.sortCurrent === 'most helpful') {
+        console.log('most helpful')
+        this.setState({
+          allData: this.sortReviews(this.state.allData, 'most helpful')
         })
       }
     })
