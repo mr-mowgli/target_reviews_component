@@ -7,4 +7,5 @@ Reviews.find((err, values) => {
 
 
 
-// Reviews.collection.deleteMany({}); //UNCOMMENT THIS LINE TO DELETE DATA
+// Reviews.collection.deleteMany({});
+// console.log('DB DELETED');  //UNCOMMENT THESE 2 LINES TO DELETE DATA

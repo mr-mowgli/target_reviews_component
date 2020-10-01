@@ -10,7 +10,9 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      allData: ['some data here']
+      allData: ['some data here'],
+      sortOptions: ['most recent', 'highest rated', 'lowest rated', 'most helpful'],
+      filterOptions: ['5 stars', '4 stars', '3 stars', '2 stars', '1 star']
     };
   }
 
@@ -22,8 +24,6 @@ class App extends React.Component {
       .then(data => {
         this.setState({
           allData: data,
-          sortOptions: ['most recent', 'highest rated', 'lowest rated', 'most helpful'],
-          filterOptions: ['5 stars', '4 stars', '3 stars', '2 stars', '1 star']
         })
 
       })
