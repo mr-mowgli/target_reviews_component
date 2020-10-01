@@ -38,6 +38,12 @@ class App extends React.Component {
         var bTime = b.createdAt;
         return bTime.localeCompare(aTime);
       });
+    } else if (option === 'highest rated') {
+      return data.sort(function compare(a, b) {
+        var aTime = a.stars.toString();
+        var bTime = b.stars.toString();
+        return bTime.localeCompare(aTime);
+      });
     }
   }
 
@@ -46,9 +52,14 @@ class App extends React.Component {
       sortCurrent: event.target.value
     }, function() {
       if (this.state.sortCurrent === 'most recent') {
-        console.log('WE ARE HERE')
+        console.log('most recent')
         this.setState({
           allData: this.sortReviews(this.state.allData, 'most recent')
+        })
+      } else if (this.state.sortCurrent === 'highest rated') {
+        console.log('highest rated')
+        this.setState({
+          allData: this.sortReviews(this.state.allData, 'highest rated')
         })
       }
     })
