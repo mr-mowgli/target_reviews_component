@@ -16,7 +16,8 @@ const reviewSchema = new mongoose.Schema({
     value: Number, // 0-5
     sizing: Number, // [too small, too big, true to size]
     photos: Array, //img links
-    helpful: Number // number of "helpful" votes
+    helpfulVotes: Number, // number of "helpful" votes
+    productId: Number
 });
 
 const Reviews = mongoose.model('Reviews', reviewSchema);
