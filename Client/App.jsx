@@ -14,7 +14,9 @@ class App extends React.Component {
       sortOptions: ['most recent', 'highest rated', 'lowest rated', 'most helpful'],
       filterOptions: ['5 stars', '4 stars', '3 stars', '2 stars', '1 star'],
       sortCurrent: 'most recent',
-      filterCurrent: '5 stars'
+      filterCurrent: [],
+      filtered: false,
+      filteredData: ['filtered data here']
     };
   }
 

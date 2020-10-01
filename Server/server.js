@@ -16,11 +16,6 @@ app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`);
 });
 
-
-app.get('/', (req, res) => {
-  res.send()
-});
-
 app.get('/api/reviews', (req, res) => {
   Reviews.find({})
   .then(function(results) {
@@ -32,6 +27,7 @@ app.get('/api/reviews/:id', (req, res) => {
   Reviews.findById(req.params.id, function(err, result) {
     if (err) {
       console.log('ERROR')
+      throw new Error();
     } else {
       res.send(result)
     }
