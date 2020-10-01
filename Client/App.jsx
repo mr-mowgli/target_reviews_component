@@ -2,6 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 import List from './Components/List.jsx';
+import Overview from './Components/Overview.jsx';
+import Sort from './Components/Sort.jsx';
 
 class App extends React.Component {
 
@@ -19,7 +21,9 @@ class App extends React.Component {
       })
       .then(data => {
         this.setState({
-          allData: data
+          allData: data,
+          sortOptions: ['most recent', 'highest rated', 'lowest rated', 'most helpful'],
+          filterOptions: ['5 stars', '4 stars', '3 stars', '2 stars', '1 star']
         })
 
       })
@@ -27,7 +31,13 @@ class App extends React.Component {
 
   render() {
     return (
-      <List allData={this.state.allData}/>
+      <div>
+        <Overview />
+        <Sort sortOptions={this.state.sortOptions} filterOptions={this.state.filterOptions}/>
+        <List
+          allData={this.state.allData}
+        />
+      </div>
     );
   }
 }
