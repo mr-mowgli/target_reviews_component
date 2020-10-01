@@ -28,6 +28,18 @@ var generateReviews = function(numReviews) {
     'max': 3
   };
 
+  function randomDate(start, end) {
+    var d = new Date(start.getTime() + Math.random() * (end.getTime() - start.getTime())),
+        month = '' + (d.getMonth() + 1),
+        day = '' + d.getDate(),
+        year = d.getFullYear();
+
+    if (month.length < 2) month = '0' + month;
+    if (day.length < 2) day = '0' + day;
+
+    return [year, month, day].join('-');
+}
+
 
 
   for (var i = 0; i < numReviews; i++) {
@@ -38,7 +50,7 @@ var generateReviews = function(numReviews) {
       author: faker.name.firstName(),
       stars: faker.random.number(stars), // 0 through 5
       body: faker.lorem.paragraph(),
-      createdAt: faker.date.recent(), // date
+      createdAt: randomDate(new Date("2020-09-15T20:44:19.172Z"),new Date("2020-10-01T20:44:19.172Z")), // date
       wouldRecommend: faker.random.boolean(),
       title: faker.random.words(),
       comfort: faker.random.number(stars), // 0 - 5

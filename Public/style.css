@@ -22,6 +22,10 @@ h3 {
   box-shadow: 0 0 1em #80808066;
 }
 
+.dropdowns {
+  display: flex;
+}
+
 .dropdown {
   min-height: 50px;
   margin: 20px 0px 0px 20px;
@@ -31,4 +35,5 @@ h3 {
   border-radius: 4px;
   padding: 10px 20px;
   box-shadow: 0 0 1em #80808066;
+
 }

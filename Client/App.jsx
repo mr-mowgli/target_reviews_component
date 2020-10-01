@@ -31,10 +31,28 @@ class App extends React.Component {
       })
   }
 
+  sortReviews(data, option) {
+    if (option === 'most recent') {
+    return data.sort(function compare(a, b) {
+        var aTime = a.createdAt;
+        var bTime = b.createdAt;
+        return bTime.localeCompare(aTime);
+      });
+    }
+  }
+
   sortByChange(event) {
     this.setState({
       sortCurrent: event.target.value
+    }, function() {
+      if (this.state.sortCurrent === 'most recent') {
+        console.log('WE ARE HERE')
+        this.setState({
+          allData: this.sortReviews(this.state.allData, 'most recent')
+        })
+      }
     })
+
   }
 
   filterByChange(event) {

@@ -1,4 +1,5 @@
 import React from 'react';
+import moment from 'moment';
 
 const SingleReview = (props) => {
 
@@ -10,6 +11,7 @@ const SingleReview = (props) => {
     <p>{"Helpful: " + props.element.helpful}</p>
     <p>{"Sizing: " + props.element.sizing}</p>
     <p>{"Body: " + props.element.body}</p>
+    <p>{"Date: " + moment(props.element.createdAt).startOf('minute').fromNow()}</p>
   </div>
   )
 
