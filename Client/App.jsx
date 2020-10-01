@@ -30,7 +30,7 @@ class App extends React.Component {
 
       })
   }
-
+  // ==== NOT VERY DRY ==== //
   sortReviews(data, option) {
     if (option === 'most recent') {
     return data.sort(function compare(a, b) {
@@ -43,6 +43,12 @@ class App extends React.Component {
         var aTime = a.stars.toString();
         var bTime = b.stars.toString();
         return bTime.localeCompare(aTime);
+      });
+    } else if (option === 'lowest rated') {
+      return data.sort(function compare(a, b) {
+        var aTime = a.stars.toString();
+        var bTime = b.stars.toString();
+        return aTime.localeCompare(bTime);
       });
     }
   }
@@ -60,6 +66,11 @@ class App extends React.Component {
         console.log('highest rated')
         this.setState({
           allData: this.sortReviews(this.state.allData, 'highest rated')
+        })
+      } else if (this.state.sortCurrent === 'lowest rated') {
+        console.log('lowest rated')
+        this.setState({
+          allData: this.sortReviews(this.state.allData, 'lowest rated')
         })
       }
     })
