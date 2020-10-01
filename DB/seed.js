@@ -3,21 +3,20 @@ var db = require('./db.js');
 var mongoose = require('mongoose');
 var Reviews = require('./Reviews.js');
 
+var generateIds = function (num) {
+  var array = [];
+  for (var i = 1; i <= num; i++ ) {
+    array.push(i);
+  }
+  return array;
+};
+
+var productIds = generateIds(100);
 
 var generateReviews = function(numReviews) {
   var data = [];
   var uniq = 0;
   var counter = 0;
-
-  // var generateIds = function (num) {
-  //   var array = [];
-  //   for (var i = 1; i <= num; i++ ) {
-  //     array.push(i);
-  //   }
-  //   return array;
-  // };
-
-  // var productIds = generateIds(100);
 
   var stars = {
     'min': 1,
@@ -50,7 +49,7 @@ var generateReviews = function(numReviews) {
       author: faker.name.firstName(),
       stars: faker.random.number(stars), // 0 through 5
       body: faker.lorem.paragraph(),
-      createdAt: randomDate(new Date("2020-09-15T20:44:19.172Z"),new Date("2020-10-01T20:44:19.172Z")), // date
+      createdAt: randomDate(new Date("2020-09-15T20:44:19.172Z"), new Date("2020-10-01T20:44:19.172Z")), // date
       wouldRecommend: faker.random.boolean(),
       title: faker.random.words(),
       comfort: faker.random.number(stars), // 0 - 5
@@ -58,7 +57,13 @@ var generateReviews = function(numReviews) {
       value: faker.random.number(stars), // 0-5
       sizing: faker.random.number(sizing), // [too small, too big, true to size]
       photos: ['null'], //img links //======= TO DO ======
-      helpfulVotes: faker.random.number(sizing), // number of "helpful" votes // using sizing to be 0-3 //
+      helpfulVotes: faker.random.number(stars), // number of "helpful" votes
+    }
+    if (counter < 20) {
+      fakeReview.productId = productIds[0]
+    } else {
+      counter = 0;
+      fakeReview.productId = productIds.shift();
     }
 
     data.push(fakeReview);
@@ -72,4 +77,6 @@ Reviews.create(fakeReviews)
   .then(() => {
     mongoose.disconnect();
   })
+
+console.log('DB SEEDED');
 
