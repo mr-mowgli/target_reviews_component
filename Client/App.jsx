@@ -12,7 +12,9 @@ class App extends React.Component {
     this.state = {
       allData: ['some data here'],
       sortOptions: ['most recent', 'highest rated', 'lowest rated', 'most helpful'],
-      filterOptions: ['5 stars', '4 stars', '3 stars', '2 stars', '1 star']
+      filterOptions: ['5 stars', '4 stars', '3 stars', '2 stars', '1 star'],
+      sortCurrent: 'most recent',
+      filterCurrent: '5 stars'
     };
   }
 
@@ -29,11 +31,29 @@ class App extends React.Component {
       })
   }
 
+  sortByChange(event) {
+    this.setState({
+      sortCurrent: event.target.value
+    })
+  }
+
+  filterByChange(event) {
+    this.setState({
+      filterCurrent: event.target.value
+    })
+  }
+
   render() {
+    console.log(this.state)
     return (
       <div>
         <Overview />
-        <Sort sortOptions={this.state.sortOptions} filterOptions={this.state.filterOptions}/>
+        <Sort
+        sortOptions={this.state.sortOptions}
+        filterOptions={this.state.filterOptions}
+        sortOnChange={this.sortByChange.bind(this)}
+        filterOnChange={this.filterByChange.bind(this)}
+        />
         <List
           allData={this.state.allData}
         />
