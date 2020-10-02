@@ -111,7 +111,7 @@ class App extends React.Component {
     })
   }
 
-  renderView() {
+  renderList() {
     if (this.state.filtered) {
       return (
         <div>
@@ -139,7 +139,7 @@ class App extends React.Component {
         filterOnChange={this.filterByChange.bind(this)}
         />
         <div>
-          {this.renderView()}
+          {this.renderList()}
         </div>
       </div>
     );
