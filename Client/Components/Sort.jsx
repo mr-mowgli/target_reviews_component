@@ -18,7 +18,7 @@ const Sort = (props) => {
     </form>
     <form>
       <select className="dropdown" onChange={props.filterOnChange}>
-        <option defaultValue="5 stars">5 stars</option>
+        <option value="5 stars">5 stars</option>
         <option value="4 stars">4 stars</option>
         <option value="3 stars">3 stars</option>
         <option value="2 stars">2 stars</option>
