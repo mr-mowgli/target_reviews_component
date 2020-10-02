@@ -27,7 +27,7 @@ class App extends React.Component {
       })
       .then(data => {
         this.setState({
-          allData: data,
+          allData: this.sortReviews(data, 'most recent')
         })
 
       })

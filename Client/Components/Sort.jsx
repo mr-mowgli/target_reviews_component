@@ -5,9 +5,6 @@ import Dropdown from 'react-dropdown';
 
 const Sort = (props) => {
 
-  // let defaultOption = props.sortOptions[0];
-
-
   return (
     <>
     <div className="dropdowns">
@@ -31,7 +28,6 @@ const Sort = (props) => {
     </div>
     </>
   )
-
 }
 
 export default Sort;
