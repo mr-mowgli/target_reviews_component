@@ -21,13 +21,13 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    fetch('http://localhost:3001/api/reviews')
+    fetch('http://localhost:3001/api/reviews/5')
       .then(response => {
         return response.json();
       })
       .then(data => {
         this.setState({
-          allData: data,
+          allData: this.sortReviews(data, 'most recent')
         })
 
       })
@@ -61,6 +61,16 @@ class App extends React.Component {
     }
   }
 
+  filterStars(data, num) {
+    var output = []
+    for (var i = 0; i < data.length; i++) {
+      if (data[i].stars === num) {
+        output.push(data[i]);
+      }
+    }
+    return output;
+  }
+
   sortByChange(event) {
     this.setState({
       sortCurrent: event.target.value
@@ -92,8 +102,29 @@ class App extends React.Component {
 
   filterByChange(event) {
     this.setState({
-      filterCurrent: event.target.value
+      filterCurrent: Number(event.target.value.slice(0, 1)),
+      filtered: true
+    }, () => {
+      this.setState({
+        filteredData: this.filterStars(this.state.allData, this.state.filterCurrent)
+      })
     })
+  }
+
+  renderList() {
+    if (this.state.filtered) {
+      return (
+        <div>
+          <List data={this.state.filteredData} />
+        </div>
+      )
+    } else {
+      return (
+        <div>
+          <List data={this.state.allData} />
+        </div>
+      )
+    }
   }
 
   render() {
@@ -107,9 +138,9 @@ class App extends React.Component {
         sortOnChange={this.sortByChange.bind(this)}
         filterOnChange={this.filterByChange.bind(this)}
         />
-        <List
-          allData={this.state.allData}
-        />
+        <div>
+          {this.renderList()}
+        </div>
       </div>
     );
   }

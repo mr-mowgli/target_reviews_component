@@ -14,7 +14,6 @@ const SingleReview = (props) => {
     <p>{"Date: " + moment(props.element.createdAt).startOf('minute').fromNow()}</p>
   </div>
   )
-
 }
 
 export default SingleReview;

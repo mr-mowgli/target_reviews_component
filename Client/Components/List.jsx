@@ -4,7 +4,7 @@ import SingleReview from './SingleReview.jsx';
 const List = (props) => {
 
   return (
-    <ul>{props.allData.map(function(element, index) {
+    <ul>{props.data.map(function(element, index) {
       return <SingleReview
         key={index}
         element={element}
@@ -12,7 +12,6 @@ const List = (props) => {
       />
     })}</ul>
   )
-
 }
 
 export default List;

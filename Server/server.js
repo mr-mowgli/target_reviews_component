@@ -24,7 +24,7 @@ app.get('/api/reviews', (req, res) => {
 })
 
 app.get('/api/reviews/:id', (req, res) => {
-  Reviews.findById(req.params.id, function(err, result) {
+  Reviews.find({ productId : ` ${req.params.id} ` }, function(err, result) {
     if (err) {
       console.log('ERROR')
       throw new Error();
