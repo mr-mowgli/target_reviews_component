@@ -1,16 +1,19 @@
 import React from 'react';
+// import stars from './stars.svg'
 
 const Overview = (props) => {
 
   return (
     <>
     <div className="overview">
-    <h3>Guest Rating's and Reviews</h3>
+        <h3>Guest Rating's and Reviews</h3>
         <div className="overview item">BAR GRAPH</div>
-        <div className="overview item">STARS</div>
+        <div className="overview item">5.0
 
+        </div>
+        <object id="stars" data="./stars.svg" type="image/svg+xml"></object>
         <div className="overview item">RECOMMEND</div>
-        <object data="Client/Components/stars.svg" type="image/svg+xml"></object>
+
         <div className="break"></div>
 
         <div className="overview item">VALUE</div>

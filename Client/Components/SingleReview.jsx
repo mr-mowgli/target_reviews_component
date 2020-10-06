@@ -15,11 +15,11 @@ const SingleReview = (props) => {
     <p className="review-body">{props.element.body}</p>
     <div className="helpful">{"Helpful: " + props.element.helpfulVotes}</div>
     <div className="sizing">{"Sizing: " + props.element.sizing}</div>
-    <div className="wrapper" data-anim="base wrapper">
+    {/* <div className="wrapper" data-anim="base wrapper">
       <div className="circle" data-anim="base left"></div>
-      <div className="circle" data-anim="base right"></div>
-      TEST
-    </div>
+      <div className="circle" data-anim="base right"></div> */}
+
+    {/* </div> */}
   </div>
   )
 }
