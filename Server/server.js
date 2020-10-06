@@ -7,7 +7,7 @@ const Reviews = require('../DB/Reviews');
 const app = express();
 const port = 3004;
 
-const whitelist = ['http://localhost:3000'];
+const whitelist = ['http://localhost:3004'];
 
 var corsOptions = {
   origin: (origin, cb) => {
