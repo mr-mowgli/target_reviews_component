@@ -13,13 +13,9 @@ const SingleReview = (props) => {
     <span className="author">{props.element.author}</span>
     <span className="date">{" - " + moment(props.element.createdAt).startOf('minute').fromNow()}</span>
     <p className="review-body">{props.element.body}</p>
-    <div className="helpful">{"Helpful: " + props.element.helpfulVotes}</div>
+    {/* <div className="helpful">{"Helpful: " + props.element.helpfulVotes}</div>
     <div className="sizing">{"Sizing: " + props.element.sizing}</div>
-    {/* <div className="wrapper" data-anim="base wrapper">
-      <div className="circle" data-anim="base left"></div>
-      <div className="circle" data-anim="base right"></div> */}
-
-    {/* </div> */}
+    <div className="review-sidebar">SIDEBAR GOES HERE</div> */}
   </div>
   )
 }

@@ -18,8 +18,21 @@ h3 {
 }
 
 .listItem {
+  /* display: flex;
+  flex-direction: column; */
   min-height: 50px;
   margin: 20px 20px 20px -20px;
+  list-style: inside;
+  border: 1px solid #77777769;
+  background-color: #fdfdfd;
+  border-radius: 4px;
+  padding: 10px 20px;
+}
+
+.review-sidebar {
+  margin: 20px 20px 20px 20px;
+  height: 100%;
+  width: 75px;
   list-style: none;
   border: 1px solid #77777769;
   background-color: #fdfdfd;

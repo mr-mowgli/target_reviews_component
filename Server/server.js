@@ -1,10 +1,22 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+const cors = require('cors');
 
 const Reviews = require('../DB/Reviews');
 
 const app = express();
 const port = 3004;
+
+const whitelist = ['http://localhost:3000'];
+
+var corsOptions = {
+  origin: (origin, cb) => {
+    var originCheck = whitelist.indexOf(origin) !== -1;
+    cb(null, originCheck);
+  },
+  credentials: true
+}
+app.use(cors(corsOptions));
 
 app.use(bodyParser.json());
 // app.use(bodyParser.urlencoded({extended: true}));
@@ -29,7 +41,6 @@ app.get('/api/reviews/:id', (req, res) => {
       console.log('ERROR')
       throw new Error();
     } else {
-      res.header("Access-Control-Allow-Origin", `http://localhost:${port}`);
       res.send(result)
     }
   })
