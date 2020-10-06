@@ -4,7 +4,7 @@ const bodyParser = require('body-parser');
 const Reviews = require('../DB/Reviews');
 
 const app = express();
-const port = 3001;
+const port = 3004;
 
 app.use(bodyParser.json());
 // app.use(bodyParser.urlencoded({extended: true}));
@@ -29,6 +29,7 @@ app.get('/api/reviews/:id', (req, res) => {
       console.log('ERROR')
       throw new Error();
     } else {
+      res.header("Access-Control-Allow-Origin", `http://localhost:${port}`);
       res.send(result)
     }
   })
