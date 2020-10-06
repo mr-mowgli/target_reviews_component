@@ -25,6 +25,7 @@
     "http-proxy-middleware": "^1.0.5",
     "moment": "^2.29.0",
     "mongoose": "^5.10.7",
+    "nodemon": "^2.0.4",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-dropdown": "^1.9.0"
