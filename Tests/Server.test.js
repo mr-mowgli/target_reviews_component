@@ -22,7 +22,7 @@ test('tests Jest - true equals true', () => {
 });
 
 test('Request returns an array of 2000 objects', () => {
-  axios.get('http://localhost:3001/api/reviews')
+  axios.get('http://localhost:3004/api/reviews')
     .then( response => {
       expect(response.length).toEqual(2000)
     })
@@ -32,7 +32,7 @@ test('Request returns an array of 2000 objects', () => {
   })
 
   test('Objects in response match schema', () => {
-    axios.get('http://localhost:3001/api/reviews')
+    axios.get('http://localhost:3004/api/reviews')
       .then( response => {
         response.forEach( element => {
           expect(element).toMatchObject(reviewSchema);

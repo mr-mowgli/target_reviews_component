@@ -21,7 +21,7 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    fetch('http://localhost:3001/api/reviews/5')
+    fetch('http://localhost:3004/api/reviews/5')
       .then(response => {
         return response.json();
       })
@@ -76,22 +76,18 @@ class App extends React.Component {
       sortCurrent: event.target.value
     }, function() {
       if (this.state.sortCurrent === 'most recent') {
-        console.log('most recent')
         this.setState({
           allData: this.sortReviews(this.state.allData, 'most recent')
         })
       } else if (this.state.sortCurrent === 'highest rated') {
-        console.log('highest rated')
         this.setState({
           allData: this.sortReviews(this.state.allData, 'highest rated')
         })
       } else if (this.state.sortCurrent === 'lowest rated') {
-        console.log('lowest rated')
         this.setState({
           allData: this.sortReviews(this.state.allData, 'lowest rated')
         })
       } else if (this.state.sortCurrent === 'most helpful') {
-        console.log('most helpful')
         this.setState({
           allData: this.sortReviews(this.state.allData, 'most helpful')
         })
@@ -128,7 +124,6 @@ class App extends React.Component {
   }
 
   render() {
-    console.log(this.state)
     return (
       <div>
         <Overview />
@@ -146,6 +141,6 @@ class App extends React.Component {
   }
 }
 
-ReactDOM.render(<App />, document.getElementById('app'));
+ReactDOM.render(<App />, document.getElementById('reviews'));
 
 export default App;
