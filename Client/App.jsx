@@ -5,7 +5,7 @@ import List from './Components/List.jsx';
 import Overview from './Components/Overview.jsx';
 import Sort from './Components/Sort.jsx';
 
-class App extends React.Component {
+class Reviews extends React.Component {
 
   constructor(props) {
     super(props);
@@ -143,4 +143,4 @@ class App extends React.Component {
 
 ReactDOM.render(<App />, document.getElementById('reviews'));
 
-export default App;
+export default Reviews;
