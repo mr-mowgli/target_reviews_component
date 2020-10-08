@@ -1,5 +1,5 @@
 import React from 'react';
-// import stars from './stars.svg'
+import { Button } from '../Styling/Styles.jsx';
 
 const Overview = (props) => {
 
@@ -19,6 +19,7 @@ const Overview = (props) => {
         <div className="overview item">STYLE</div>
         <div className="overview item">SIZING</div>
         <div className="overview item">COMFORT</div>
+        <Button>Write a review</Button>
 
     </div>
     </>
