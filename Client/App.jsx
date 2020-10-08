@@ -20,10 +20,15 @@ class Reviews extends React.Component {
     };
   }
 
+
+
   componentDidMount() {
-    fetch('http://localhost:3004/api/reviews/5')
-      .then(response => {
-        return response.json();
+
+    let productId = window.location.pathname.slice(1) || 1;
+
+    fetch(`http://localhost:3004/api/reviews/${productId}`)
+      .then(data => {
+        return data.json();
       })
       .then(data => {
         this.setState({

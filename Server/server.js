@@ -1,6 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
+var path = require('path');
 
 const Reviews = require('../DB/Reviews');
 
@@ -35,13 +36,24 @@ app.get('/api/reviews', (req, res) => {
   })
 })
 
+app.get('/:id', (req, res) => {
+  Reviews.find({ productId : ` ${req.params.id} ` }, function(err, result) {
+    if (err) {
+      console.log('ERROR')
+      throw new Error();
+    } else {
+      res.sendFile(path.resolve('./Public/index.html'))
+    }
+  })
+});
+
 app.get('/api/reviews/:id', (req, res) => {
   Reviews.find({ productId : ` ${req.params.id} ` }, function(err, result) {
     if (err) {
       console.log('ERROR')
       throw new Error();
     } else {
-      res.send(result)
+      res.send(result);
     }
   })
 });
