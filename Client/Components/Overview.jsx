@@ -11,7 +11,6 @@ const Overview = (props) => {
         <div className="overview item">5.0
 
         </div>
-        <object id="stars" data="./stars.svg" type="image/svg+xml"></object>
         <div className="overview item">RECOMMEND</div>
 
         <div className="break"></div>
