@@ -1,9 +1,15 @@
 body {
+  font-family: sans-serif, Arial, Helvetica;
   line-height: 1.4285;
   color: rgb(51, 51, 51);
   background-color: white;
   max-width: 100%;
   margin: 0px;
+}
+
+h1 {
+  font-size: 50px;
+  margin: 0px 0px -10px 0px;
 }
 
 h3 {
@@ -74,10 +80,15 @@ h3 {
 }
 
 .overview-item {
+  display: flex;
   border: 1px solid #77777769;
   margin: 20px 20px 20px 20px;
 }
 
+.overview-stars {
+  position: center;
+  margin: 20px 20px 20px 20px;
+}
 
 .dropdowns {
   display: flex;
