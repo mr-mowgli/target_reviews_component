@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, Stars } from '../Styling/Styles.jsx';
+import { Button, FourStars, } from '../Styling/Styles.jsx';
 
 const Overview = (props) => {
 
@@ -10,7 +10,7 @@ const Overview = (props) => {
         <div className="overview-item">BAR GRAPH</div>
         <div className="overview-stars"><h1>4.0</h1>
 
-        <Stars/>
+        <FourStars/>
         <div>20 star ratings</div>
         </div>
         <div className="overview item">RECOMMEND</div>
