@@ -2,17 +2,17 @@ import styled, { css } from 'styled-components';
 
 export const Button = styled.button`
 position: center;
-width: 100%;
+justify-content: space-around;
+width: 15%;
 height: 30px;
 font-size: 12px;
-padding: 0 4px;
 color: rgb(255, 255, 255);
 background-color: rgb(204, 0, 0);
 border-color: rgb(204, 0, 0);
 border-width: 1px;
 border-style: solid;
 border-radius: 4px;
-margin: 0px 475px 8px 475px;
+margin: 0px 0px 10px 600px;
 cursor: pointer;
 :hover {
 background-color: rgb(135, 0, 0);

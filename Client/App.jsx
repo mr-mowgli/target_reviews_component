@@ -4,6 +4,7 @@ import ReactDOM from 'react-dom';
 import List from './Components/List.jsx';
 import Overview from './Components/Overview.jsx';
 import Sort from './Components/Sort.jsx';
+import { Button, Stars } from './Styling/Styles.jsx';
 
 class Reviews extends React.Component {
 
@@ -132,6 +133,7 @@ class Reviews extends React.Component {
     return (
       <div>
         <Overview />
+        <Button>Write a review</Button>
         <Sort
         sortOptions={this.state.sortOptions}
         filterOptions={this.state.filterOptions}

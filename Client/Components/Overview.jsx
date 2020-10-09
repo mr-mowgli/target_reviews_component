@@ -21,7 +21,6 @@ const Overview = (props) => {
         <div className="overview-item">STYLE</div>
         <div className="overview-item">SIZING</div>
         <div className="overview-item">COMFORT</div>
-        <Button>Write a review</Button>
 
     </div>
     </>
