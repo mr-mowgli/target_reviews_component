@@ -1,7 +1,6 @@
 body {
   font-family: sans-serif, Arial, Helvetica;
   line-height: 1.4285;
-  color: rgb(51, 51, 51);
   background-color: white;
   max-width: 100%;
   margin: 0px;
@@ -90,6 +89,10 @@ h3 {
   margin: 20px 20px 20px 20px;
 }
 
+.overview-recommend {
+  margin: 20px 20px 20px 20px;
+}
+
 .dropdowns {
   display: flex;
   background-color: #ebebebe8;
@@ -106,67 +109,21 @@ h3 {
 
 }
 
-/* ===== PROGRESS CIRCLE ===== */
-
-.wrapper {
-  width: 100px; /* Set the size of the progress bar */
-  height: 100px;
-  position: absolute; /* Enable clipping */
-  clip: rect(0px, 100px, 100px, 50px); /* Hide half of the progress bar */
-}
-/* Set the sizes of the elements that make up the progress bar */
-.circle {
-  width: 10px;
-  height: 10px;
-  border: 5px solid green;
-  border-radius: 10px;
-  position: absolute;
-  clip: rect(0px, 10px, 50px, 0px);
-}
-/* Using the data attributes for the animation selectors. */
-/* Base settings for all animated elements */
-div[data-anim~=base] {
-  -webkit-animation-iteration-count: 1;  /* Only run once */
-  -webkit-animation-fill-mode: forwards; /* Hold the last keyframe */
-  -webkit-animation-timing-function:linear; /* Linear animation */
+.svg-progress {
+  display: block;
+  margin: 20px auto;
+  max-width: 100%;
 }
 
-.wrapper[data-anim~=wrapper] {
-  -webkit-animation-duration: 0.01s; /* Complete keyframes asap */
-  -webkit-animation-delay: 3s; /* Wait half of the animation */
-  -webkit-animation-name: close-wrapper; /* Keyframes name */
+.svg-circle-bg {
+  fill: none;
 }
 
-.circle[data-anim~=left] {
-  -webkit-animation-duration: 6s; /* Full animation time */
-  -webkit-animation-name: left-spin;
+.svg-circle {
+  fill: none;
 }
-
-.circle[data-anim~=right] {
-  -webkit-animation-duration: 3s; /* Half animation time */
-  -webkit-animation-name: right-spin;
-}
-/* Rotate the right side of the progress bar from 0 to 180 degrees */
-@-webkit-keyframes right-spin {
-  from {
-    -webkit-transform: rotate(0deg);
-  }
-  to {
-    -webkit-transform: rotate(180deg);
-  }
-}
-/* Rotate the left side of the progress bar from 0 to 360 degrees */
-@-webkit-keyframes left-spin {
-  from {
-    -webkit-transform: rotate(0deg);
-  }
-  to {
-    -webkit-transform: rotate(360deg);
-  }
-}
-/* Set the wrapper clip to auto, effectively removing the clip */
-@-webkit-keyframes close-wrapper {
-  to {
-    clip: rect(auto, auto, auto, auto);
-  }
+#svg-circle-text {
+font-size: 15px;
+text-anchor: middle;
+-webkit-text-fill-color: green;
 }

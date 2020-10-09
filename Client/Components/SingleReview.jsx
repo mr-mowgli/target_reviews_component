@@ -1,5 +1,7 @@
 import React from 'react';
 import moment from 'moment';
+import { Button, FiveStars, FourStars, ThreeStars, TwoStars, OneStar } from '../Styling/Styles.jsx';
+import Stars from './Stars.jsx';
 
 const SingleReview = (props) => {
 
@@ -7,7 +9,11 @@ const SingleReview = (props) => {
   <div className="listItem">
     <span className="title">{props.element.title}</span>
     <div className="break"></div>
-    <span className="stars">{props.element.stars + " out of 5 stars"}</span>
+
+    <span className="stars">
+      <Stars stars={props.element.stars}/>
+    </span>
+
     <span className="recommend">{" | " + "would recommend"}</span>
     <div className="break"></div>
     <span className="author">{props.element.author}</span>
