@@ -39,17 +39,55 @@ const Overview = (props) => {
             strokeWidth={3}
             circleOneStroke='#ffffff'
             circleTwoStroke='#008300'
-            complete={5}
+            complete={4}
           />
           <div className="break"></div>
           <div>
             <h4>Comfort</h4>
-            4.5 out of 5
           </div>
         </div>
-        <div className="overview-item">VALUE</div>
-        <div className="overview-item">STYLE</div>
-        <div className="overview-item">SIZING</div>
+        <div className="overview-recommend">
+          <ProgressCircle
+            progress={10}
+            size={50}
+            strokeWidth={3}
+            circleOneStroke='#ffffff'
+            circleTwoStroke='#008300'
+            complete={3}
+          />
+          <div className="break"></div>
+          <div>
+            <h4>Value</h4>
+          </div>
+        </div>
+        <div className="overview-recommend">
+          <ProgressCircle
+            progress={10}
+            size={50}
+            strokeWidth={3}
+            circleOneStroke='#ffffff'
+            circleTwoStroke='#008300'
+            complete={2}
+          />
+          <div className="break"></div>
+          <div>
+            <h4>Style</h4>
+          </div>
+        </div>
+        <div className="overview-recommend">
+          <ProgressCircle
+            progress={10}
+            size={50}
+            strokeWidth={3}
+            circleOneStroke='#ffffff'
+            circleTwoStroke='#008300'
+            complete={4}
+          />
+          <div className="break"></div>
+          <div>
+            <h4>Sizing</h4>
+          </div>
+        </div>
 
     </div>
     </>
