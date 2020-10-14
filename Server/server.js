@@ -4,6 +4,7 @@ const cors = require('cors');
 var path = require('path');
 
 const Reviews = require('../DB/Reviews');
+const ReviewsController = require('../DB/ReviewsController');
 
 const app = express();
 const port = 3004;
@@ -30,30 +31,37 @@ app.listen(port, () => {
 });
 
 app.get('/api/reviews', (req, res) => {
-  Reviews.find({})
-  .then(function(results) {
-    res.send(results);
-  })
+  ReviewsController.getAll((err, results) => {
+    if (err) {
+      console.log('ERROR');
+      throw new Error;
+    } else {
+      res.send(results);
+    }
+  });
+  // .then(function(results) {
+  //   res.send(results);
+  // })
 })
 
 app.get('/:id', (req, res) => {
-  Reviews.find({ productId : ` ${req.params.id} ` }, function(err, result) {
+  ReviewsController.getById(req.params.id, (err, result) => {
     if (err) {
       console.log('ERROR')
       throw new Error();
     } else {
-      res.sendFile(path.resolve('./Public/index.html'))
+      res.sendFile(path.resolve('./Public/index.html'));
     }
   })
 });
 
 app.get('/api/reviews/:id', (req, res) => {
-  Reviews.find({ productId : ` ${req.params.id} ` }, function(err, result) {
+  ReviewsController.getById(req.params.id, (err, result) => {
     if (err) {
       console.log('ERROR')
       throw new Error();
     } else {
       res.send(result);
     }
-  })
+  });
 });
