@@ -39,15 +39,12 @@ app.get('/api/reviews', (req, res) => {
       res.send(results);
     }
   });
-  // .then(function(results) {
-  //   res.send(results);
-  // })
 })
 
 app.get('/:id', (req, res) => {
   ReviewsController.getById(req.params.id, (err, result) => {
     if (err) {
-      console.log('ERROR')
+      console.log('ERROR');
       throw new Error();
     } else {
       res.sendFile(path.resolve('./Public/index.html'));
@@ -58,10 +55,45 @@ app.get('/:id', (req, res) => {
 app.get('/api/reviews/:id', (req, res) => {
   ReviewsController.getById(req.params.id, (err, result) => {
     if (err) {
-      console.log('ERROR')
+      console.log('ERROR');
       throw new Error();
     } else {
       res.send(result);
     }
   });
 });
+
+app.post('/api/reviews', (req, res) => {
+  ReviewsController.createReview(req.body, (err, result) => {
+    if (err) {
+      console.log('ERROR');
+      throw new Error();
+    } else {
+      res.send(result);
+    }
+  })
+});
+
+app.put('/api/reviews/:id', (req, res) => {
+  db.updateById(req.params.id, req.body, (err, result) => {
+    if (err) {
+      res.send(err);
+    } else {
+      res.send(result);
+    }
+  })
+});
+
+app.delete('/api/reviews/:id', (req, res) => {
+  ReviewsController.deleteById({
+    product: product,
+    url: url},
+    (err, result) => {
+      if (err) {
+        console.log('ERROR');
+        throw new Error;
+      } else {
+        res.send(result);
+      }
+    })
+})
