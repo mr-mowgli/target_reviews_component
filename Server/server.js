@@ -75,7 +75,7 @@ app.post('/api/reviews', (req, res) => {
 });
 
 app.put('/api/reviews/:id', (req, res) => {
-  db.updateById(req.params.id, req.body, (err, result) => {
+  ReviewsController.updateById(req.params.id, req.body, (err, result) => {
     if (err) {
       res.send(err);
     } else {
