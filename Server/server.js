@@ -91,8 +91,8 @@ app.delete('/api/reviews/:id', (req, res) => {
     url: url},
     (err, result) => {
       if (err) {
-        console.log('ERROR');
-        throw new Error;
+        console.error(err);
+        res.status(500).send();
       } else {
         res.send(result);
       }
