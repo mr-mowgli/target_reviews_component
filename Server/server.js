@@ -33,8 +33,8 @@ app.listen(port, () => {
 app.get('/api/reviews', (req, res) => {
   ReviewsController.getAll((err, results) => {
     if (err) {
-      console.log('ERROR');
-      throw new Error;
+      console.error(err);
+      res.status(500).send();
     } else {
       res.send(results);
     }
@@ -44,8 +44,8 @@ app.get('/api/reviews', (req, res) => {
 app.get('/:id', (req, res) => {
   ReviewsController.getById(req.params.id, (err, result) => {
     if (err) {
-      console.log('ERROR');
-      throw new Error();
+      console.error(err);
+      res.status(500).send();
     } else {
       res.sendFile(path.resolve('./Public/index.html'));
     }
@@ -55,8 +55,8 @@ app.get('/:id', (req, res) => {
 app.get('/api/reviews/:id', (req, res) => {
   ReviewsController.getById(req.params.id, (err, result) => {
     if (err) {
-      console.log('ERROR');
-      throw new Error();
+      console.error(err);
+      res.status(500).send();
     } else {
       res.send(result);
     }
@@ -66,8 +66,8 @@ app.get('/api/reviews/:id', (req, res) => {
 app.post('/api/reviews', (req, res) => {
   ReviewsController.createReview(req.body, (err, result) => {
     if (err) {
-      console.log('ERROR');
-      throw new Error();
+      console.error(err);
+      res.status(500).send();
     } else {
       res.send(result);
     }
@@ -77,7 +77,8 @@ app.post('/api/reviews', (req, res) => {
 app.put('/api/reviews/:id', (req, res) => {
   ReviewsController.updateById(req.params.id, req.body, (err, result) => {
     if (err) {
-      res.send(err);
+      console.error(err);
+      res.status(500).send();
     } else {
       res.send(result);
     }
