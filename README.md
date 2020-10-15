@@ -14,4 +14,16 @@ Have webpack watch the files via "npm run build"
 
 Reviews should now be rendered on port 3001.
 
+# API Endpoints
 
+GET - '/api/reviews' - get all reviews as JSON
+
+GET - '/:id' - get one review by ID, served to the webpage
+
+GET - '/api/reviews/:id' - get one review by ID, as JSON
+
+POST - '/api/reviews' - post a review (full JSON body required)
+
+PUT - '/api/reviews/:id' - update one review, by ID (JSON body reaturing just the changes required)
+
+DELETE - '/api/reviews/:id' - delete one review, by ID
