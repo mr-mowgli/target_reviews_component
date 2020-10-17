@@ -21,37 +21,59 @@ const randomDate = (start, end) => {
   return [year, month, day].join('-');
 }
 
-// primary function that generates a set number of primary records
-const generatePrimaryRecords = () =>  {
+// primary function that generates primary records
+const generatePrimaryRecords = (numberOfRecords, writer, encoding, callback) =>  {
+  let counter = numberOfRecords;
+  let id = 1;
+  let idNumberOfRecords = Math.floor(Math.random() * 20);
+  let idCurrentRecordCount = 1;
 
-  let currentId = 0;
+  const write = () => {
+    let ok = true;
 
-  writer.pipe(fs.createWriteStream('seed-data.csv'));
+    do {
+      counter -= 1;
 
-  for(let i = 0; i < 2000000; i++) {
-    for (let j = 0; j < Math.floor(Math.random() * 20); j++) {
-      writer.write({
-        author: faker.name.firstName(),
-        stars: randomNumber(0, 6), // 0-5
-        body: faker.lorem.paragraph(),
-        createdAt: randomDate(new Date("2020-09-15T20:44:19.172Z"), new Date("2020-10-01T20:44:19.172Z")),
-        wouldRecommend: faker.random.boolean(),
-        title: faker.random.words(),
-        comfort: randomNumber(0, 6), // 0-5
-        style: randomNumber(0, 6), // 0-5
-        value: randomNumber(0, 6), // 0-5
-        sizing: randomNumber(1, 4), // [too small, too big, true to size]
-        helpfulVotes: randomNumber(0, 6), // # of "helpful" votes
-        productId: currentId
-      });
+      idCurrentRecordCount++;
+
+      if (idCurrentRecordCount >= idNumberOfRecords) {
+        id++;
+        idNumberOfRecords = Math.floor(Math.random() * 20);
+        idCurrentRecordCount = 1;
+      }
+
+      let author = faker.name.firstName();
+      let stars = randomNumber(0, 6); // 0-5
+      let body = faker.lorem.paragraph();
+      let createdAt = randomDate(new Date("2020-09-15T20:44:19.172Z"), new Date("2020-10-01T20:44:19.172Z"));
+      let wouldRecommend = faker.random.boolean();
+      let title = faker.random.words();
+      let comfort = randomNumber(0, 6); // 0-5
+      let style = randomNumber(0, 6); // 0-5
+      let value = randomNumber(0, 6); // 0-5
+      let sizing = randomNumber(1, 4); // [too small, too big, true to size]
+      let helpfulVotes = randomNumber(0, 6); // # of "helpful" votes
+
+      let data = `${author},${stars},${body},${createdAt},${wouldRecommend},${title},${comfort},${style},${value},${sizing},${helpfulVotes},${id}\n`;
+
+      if (counter === 0) {
+        writer.write(data, encoding, callback);
+      } else {
+        ok = writer.write(data, encoding);
+      }
+    } while (counter > 0 && ok);
+
+    if (counter > 0) {
+      writer.once('drain', write);
     }
-
-    currentId++;
   }
-
-  writer.end();
-  console.log('CSV generation complete');
-
+  write();
 }
 
-generatePrimaryRecords();
+const writeUsers = fs.createWriteStream('seed-data.csv');
+writeUsers.write('author,stars,body,createdAt,wouldRecommend,title,comfort,style,value,sizing,helpfulVotes,productId\n', 'utf8');
+
+generatePrimaryRecords(10000000, writeUsers, 'utf-8', () => {
+  console.log('Seeding operation complete.')
+  writeUsers.end();
+});
