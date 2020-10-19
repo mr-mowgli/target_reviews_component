@@ -27,7 +27,7 @@ const deleteById = (id, callback) => {
 }
 
 const createReview = (review, callback) => {
-  Reviews.create(review, (err, review) => {
+  Reviews.create(review, (err, result) => {
     if (err) {
       callback(err, null);
     } else {

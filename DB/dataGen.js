@@ -50,11 +50,11 @@ const generatePrimaryRecords = (numberOfRecords, writer, encoding, callback) => 
       let title = faker.random.words();
       let comfort = randomNumber(0, 6); // 0-5
       let style = randomNumber(0, 6); // 0-5
-      let value = randomNumber(0, 6); // 0-5
+      let productValue = randomNumber(0, 6); // 0-5
       let sizing = randomNumber(1, 4); // [too small, too big, true to size]
       let helpfulVotes = randomNumber(0, 6); // # of "helpful" votes
 
-      let data = `${author},${stars},${body},${createdAt},${wouldRecommend},${title},${comfort},${style},${value},${sizing},${helpfulVotes},${id}\n`;
+      let data = `${author},${stars},${body},${createdAt},${wouldRecommend},${title},${comfort},${style},${productValue},${sizing},${helpfulVotes},${id}\n`;
 
       if (counter === 0) {
         writer.write(data, encoding, callback);
