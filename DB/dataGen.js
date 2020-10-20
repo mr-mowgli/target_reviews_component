@@ -3,7 +3,6 @@ const faker = require('faker');
 const csvWriter = require('csv-write-stream');
 const writer = csvWriter();
 
-// global objects for faker
 const randomNumber = (min, max) => {
   return Math.floor(Math.random() * (max - min) + min);
 }
@@ -27,6 +26,8 @@ const generatePrimaryRecords = (numberOfRecords, writer, encoding, callback) => 
   let id = 1;
   let idNumberOfRecords = Math.floor(Math.random() * 20);
   let idCurrentRecordCount = 1;
+  // let gratuitousCommas = 0;
+  // let islandsCommaCount = 0;
 
   const write = () => {
     let ok = true;
@@ -43,16 +44,28 @@ const generatePrimaryRecords = (numberOfRecords, writer, encoding, callback) => 
       }
 
       let author = faker.name.firstName();
-      let stars = randomNumber(0, 6); // 0-5
+      let stars = faker.random.number({'min': 1, 'max': 5}); // 0-5
       let body = faker.lorem.paragraph();
       let createdAt = randomDate(new Date("2020-09-15T20:44:19.172Z"), new Date("2020-10-01T20:44:19.172Z"));
       let wouldRecommend = faker.random.boolean();
       let title = faker.random.words();
-      let comfort = randomNumber(0, 6); // 0-5
-      let style = randomNumber(0, 6); // 0-5
-      let productValue = randomNumber(0, 6); // 0-5
-      let sizing = randomNumber(1, 4); // [too small, too big, true to size]
+      let comfort = faker.random.number({'min': 1, 'max': 5}); // 0-5
+      let style = faker.random.number({'min': 1, 'max': 5}); // 0-5
+      let productValue = faker.random.number({'min': 1, 'max': 5}); // 0-5
+      let sizing = faker.random.number({'min': 1, 'max': 3}); // [too small, too big, true to size]
       let helpfulVotes = randomNumber(0, 6); // # of "helpful" votes
+
+      if (title.includes('Islands,')) {
+        // islandsCommaCount++;
+        // console.log('Got one!  Islands, #', islandsCommaCount);
+        title = 'Islands Associate Computer';
+      }
+
+      if (title[title.length - 1] === ',') {
+        // gratuitousCommas++;
+        // console.log('Got one! Gratuitous comma #', gratuitousCommas);
+        title = title.slice(0, -1);
+      }
 
       let data = `${author},${stars},${body},${createdAt},${wouldRecommend},${title},${comfort},${style},${productValue},${sizing},${helpfulVotes},${id}\n`;
 
