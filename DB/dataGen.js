@@ -23,11 +23,12 @@ const randomDate = (start, end) => {
 // primary function that generates primary records
 const generatePrimaryRecords = (numberOfRecords, writer, encoding, callback) =>  {
   let counter = numberOfRecords;
-  let id = 1;
-  let idNumberOfRecords = Math.floor(Math.random() * 20);
+  let productId = 1;
+  let recordId = 1;
+  let idNumberOfRecords = faker.random.number({'min': 2, 'max': 6});
   let idCurrentRecordCount = 1;
-  // let gratuitousCommas = 0;
-  // let islandsCommaCount = 0;
+  let gratuitousCommas = 0;
+  let islandsCommaCount = 0;
 
   const write = () => {
     let ok = true;
@@ -38,8 +39,8 @@ const generatePrimaryRecords = (numberOfRecords, writer, encoding, callback) => 
       idCurrentRecordCount++;
 
       if (idCurrentRecordCount >= idNumberOfRecords) {
-        id++;
-        idNumberOfRecords = Math.floor(Math.random() * 20);
+        productId++;
+        idNumberOfRecords = faker.random.number({'min': 2, 'max': 6});
         idCurrentRecordCount = 1;
       }
 
@@ -56,18 +57,20 @@ const generatePrimaryRecords = (numberOfRecords, writer, encoding, callback) => 
       let helpfulVotes = randomNumber(0, 6); // # of "helpful" votes
 
       if (title.includes('Islands,')) {
-        // islandsCommaCount++;
-        // console.log('Got one!  Islands, #', islandsCommaCount);
+        islandsCommaCount++;
+        console.log('Got one!  Islands, #', islandsCommaCount);
         title = 'Islands Associate Computer';
       }
 
       if (title[title.length - 1] === ',') {
-        // gratuitousCommas++;
-        // console.log('Got one! Gratuitous comma #', gratuitousCommas);
+        gratuitousCommas++;
+        console.log('Got one! Gratuitous comma #', gratuitousCommas);
         title = title.slice(0, -1);
       }
 
-      let data = `${author},${stars},${body},${createdAt},${wouldRecommend},${title},${comfort},${style},${productValue},${sizing},${helpfulVotes},${id}\n`;
+      let data = `${recordId},${author},${stars},${body},${createdAt},${wouldRecommend},${title},${comfort},${style},${productValue},${sizing},${helpfulVotes},${productId}\n`;
+
+      recordId++;
 
       if (counter === 0) {
         writer.write(data, encoding, callback);
@@ -84,9 +87,9 @@ const generatePrimaryRecords = (numberOfRecords, writer, encoding, callback) => 
 }
 
 const writeUsers = fs.createWriteStream('seed-data.csv');
-writeUsers.write('author,stars,body,createdAt,wouldRecommend,title,comfort,style,value,sizing,helpfulVotes,productId\n', 'utf8');
+writeUsers.write('recordId,author,stars,body,createdAt,wouldRecommend,title,comfort,style,value,sizing,helpfulVotes,productId\n', 'utf8');
 
-generatePrimaryRecords(10000000, writeUsers, 'utf-8', () => {
+generatePrimaryRecords(60000000, writeUsers, 'utf-8', () => {
   console.log('Seeding operation complete.')
   writeUsers.end();
 });
