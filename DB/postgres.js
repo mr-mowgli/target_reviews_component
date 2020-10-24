@@ -7,7 +7,7 @@ const pool = new Pool({
 });
 
 const getReviews = (inputId, callback) => {
-  if (inputId=99999999) {
+  if (inputId === 99999999) {
     const query = `SELECT recordid, author, stars, body, createdat, wouldrecommend, title, comfort, style, productvalue, sizing, helpfulvotes, productid FROM reviews`;
   } else {
     const query = `SELECT recordid, author, stars, body, createdat, wouldrecommend, title, comfort, style, productvalue, sizing, helpfulvotes, productid FROM reviews WHERE productid=${inputId}`;
