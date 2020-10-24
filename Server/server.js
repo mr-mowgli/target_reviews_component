@@ -3,8 +3,9 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 var path = require('path');
 
-const Reviews = require('../DB/Reviews');
-const ReviewsController = require('../DB/ReviewsController');
+// const Reviews = require('../DB/Reviews');
+// const ReviewsController = require('../DB/ReviewsController');
+const postgres = require('../DB/postgres');
 
 const app = express();
 const port = 3004;
@@ -23,7 +24,6 @@ app.use(cors(corsOptions));
 app.use(bodyParser.json());
 // app.use(bodyParser.urlencoded({extended: true}));
 
-
 app.use(express.static(__dirname + '/../Public'));
 
 app.listen(port, () => {
@@ -31,7 +31,7 @@ app.listen(port, () => {
 });
 
 app.get('/api/reviews', (req, res) => {
-  ReviewsController.getAll((err, results) => {
+  postgres.getReviews(0, (err, results) => {
     if (err) {
       console.error(err);
       res.status(500).send();
@@ -42,7 +42,7 @@ app.get('/api/reviews', (req, res) => {
 })
 
 app.get('/:id', (req, res) => {
-  ReviewsController.getById(req.params.id, (err, result) => {
+  postgres.getReviews(req.params.id, (err, result) => {
     if (err) {
       console.error(err);
       res.status(500).send();
@@ -53,7 +53,7 @@ app.get('/:id', (req, res) => {
 });
 
 app.get('/api/reviews/:id', (req, res) => {
-  ReviewsController.getById(req.params.id, (err, result) => {
+  postgres.getReviews(req.params.id, (err, result) => {
     if (err) {
       console.error(err);
       res.status(500).send();
@@ -64,7 +64,7 @@ app.get('/api/reviews/:id', (req, res) => {
 });
 
 app.post('/api/reviews', (req, res) => {
-  ReviewsController.createReview(req.body, (err, result) => {
+  postgres.postReview(req.body, (err, result) => {
     if (err) {
       console.error(err);
       res.status(500).send();
@@ -75,7 +75,7 @@ app.post('/api/reviews', (req, res) => {
 });
 
 app.put('/api/reviews/:id', (req, res) => {
-  ReviewsController.updateById(req.params.id, req.body, (err, result) => {
+  postgres.editReview(req.params.id, req.body, (err, result) => {
     if (err) {
       console.error(err);
       res.status(500).send();
@@ -86,9 +86,7 @@ app.put('/api/reviews/:id', (req, res) => {
 });
 
 app.delete('/api/reviews/:id', (req, res) => {
-  ReviewsController.deleteById({
-    product: product,
-    url: url},
+  postgres.deleteReview(req.params.id,
     (err, result) => {
       if (err) {
         console.error(err);
