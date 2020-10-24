@@ -3,8 +3,6 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 var path = require('path');
 
-// const Reviews = require('../DB/Reviews');
-// const ReviewsController = require('../DB/ReviewsController');
 const postgres = require('../DB/postgres');
 
 const app = express();
@@ -22,7 +20,6 @@ var corsOptions = {
 app.use(cors(corsOptions));
 
 app.use(bodyParser.json());
-// app.use(bodyParser.urlencoded({extended: true}));
 
 app.use(express.static(__dirname + '/../Public'));
 
