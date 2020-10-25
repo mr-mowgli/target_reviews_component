@@ -45,7 +45,7 @@ const postReview = async (params, callback) => {
 
   let newId = Number(newIdRow.rows[0].recordid) + 1;
 
-  const queryString = `INSERT INTO reviews (recordid, author, stars, body, createdat, wouldrecommend, title, comfort, style, productvalue, sizing, helpfulvotes, productid) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13)`;
+  const queryString = `INSERT INTO reviews (recordid, author, stars, body, createdat, wouldrecommend, title, comfort, style, productvalue, sizing, helpfulvotes, productid) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13) RETURNING recordid, productid`;
 
   let sqlParams = [ newId, params.author, params.stars, params.body, params.createdAt, params.wouldRecommend, params.title, params.comfort, params.style, params.productValue, params.sizing, params.helpfulVotes, params.productId ];
 

@@ -1,3 +1,5 @@
+require('newrelic');
+
 const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
@@ -66,7 +68,10 @@ app.post('/api/reviews', (req, res) => {
       console.error(err);
       res.status(500).send();
     } else {
-      res.send(result);
+      res.status(200).json({
+        recordId: result.rows[0].recordid,
+        productId: result.rows[0].productid
+      });
     }
   })
 });
