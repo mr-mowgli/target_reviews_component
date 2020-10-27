@@ -1,0 +1,46 @@
+config:
+  payload:
+    -
+      path: "artillery-payload-data.csv"
+      fields:
+        - "author"
+        - "stars"
+        - "body"
+        - "createdAt"
+        - "wouldRecommend"
+        - "title"
+        - "comfort"
+        - "style"
+        - "productValue"
+        - "sizing"
+        - "helpfulVotes"
+        - "productId"
+    -
+      path: "random-products.csv"
+      fields: "randomId"
+  target: "http://localhost:3004"
+  phases:
+    - duration: 15
+      arrivalRate: 1
+      name: "1 user/sec"
+scenarios:
+  - flow:
+      - get:
+          url: "/api/reviews/{{ randomId }}"
+          weight: 99
+      - post:
+          url: "/api/reviews"
+          weight: 1
+          json:
+            author: "{{ author }}"
+            stars: "{{ stars }}"
+            body: "{{ body }}"
+            createdAt: "{{ createdAt }}"
+            wouldRecommend: "{{ wouldRecommend }}"
+            title: "{{ title }}"
+            comfort: "{{ comfort }}"
+            style: "{{ style }}"
+            productValue: "{{ productValue }}"
+            sizing: "{{ sizing }}"
+            helpfulVotes: "{{ helpfulVotes }}"
+            productId: "{{ productId }}"

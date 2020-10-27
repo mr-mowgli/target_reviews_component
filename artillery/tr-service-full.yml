@@ -11,12 +11,12 @@ config:
         - "title"
         - "comfort"
         - "style"
-        - "value"
+        - "productValue"
         - "sizing"
         - "helpfulVotes"
         - "productId"
     -
-      path: "random_products.csv"
+      path: "random-products.csv"
       fields: "randomId"
   target: "http://localhost:3004"
   phases:
@@ -35,22 +35,21 @@ config:
 scenarios:
   - flow:
       - get:
-          url: "/api/reviews/{{ randomId }}"
+          url: "/api/reviews/5749532"
           weight: 99
       - post:
           url: "/api/reviews"
           weight: 1
           json:
-            image:
-              author: "{{ author }}"
-              stars: "{{ stars }}"
-              body: "{{ body }}"
-              createdAt: "{{ createdAt }}"
-              wouldRecommend: "{{ wouldRecommend }}"
-              title: "{{ title }}"
-              comfort: "{{ comfort }}"
-              style: "{{ style }}"
-              productValue: "{{ productValue }}"
-              sizing: "{{ sizing }}"
-              helpfulVotes: "{{ helpfulVotes }}"
-              productId: "{{ productId }}"
+            author: "{{ author }}"
+            stars: "{{ stars }}"
+            body: "{{ body }}"
+            createdAt: "{{ createdAt }}"
+            wouldRecommend: "{{ wouldRecommend }}"
+            title: "{{ title }}"
+            comfort: "{{ comfort }}"
+            style: "{{ style }}"
+            productValue: "{{ productValue }}"
+            sizing: "{{ sizing }}"
+            helpfulVotes: "{{ helpfulVotes }}"
+            productId: "{{ productId }}"

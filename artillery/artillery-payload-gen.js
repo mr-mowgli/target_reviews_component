@@ -61,6 +61,7 @@ const generatePrimaryRecords = (numberOfRecords, writer, encoding, callback) => 
         console.log('Got one! Gratuitous comma #', gratuitousCommas);
         title = title.slice(0, -1);
       }
+      console.log('productId:', productId)
 
       let data = `${author},${stars},${body},${createdAt},${wouldRecommend},${title},${comfort},${style},${productValue},${sizing},${helpfulVotes},${productId}\n`;
 
@@ -81,7 +82,7 @@ const generatePrimaryRecords = (numberOfRecords, writer, encoding, callback) => 
 }
 
 const writeUsers = fs.createWriteStream('artillery-payload-data.csv');
-writeUsers.write('author,stars,body,createdAt,wouldRecommend,title,comfort,style,value,sizing,helpfulVotes,productId\n', 'utf8');
+writeUsers.write('author,stars,body,createdAt,wouldRecommend,title,comfort,style,productValue,sizing,helpfulVotes,productId\n', 'utf8');
 
 generatePrimaryRecords(10000, writeUsers, 'utf-8', () => {
   console.log('Seeding operation complete.')

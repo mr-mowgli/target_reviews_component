@@ -1,0 +1,16 @@
+config:
+  payload:
+    -
+      path: "random-products.csv"
+      fields: "id"
+  target: "http://localhost:3004"
+  phases:
+    - duration: 5
+      arrivalRate: 1
+      name: "1 user/sec"
+scenarios:
+  - flow:
+      - get:
+          url: "/api/reviews/5486514"
+
+
