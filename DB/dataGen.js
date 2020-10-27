@@ -68,7 +68,7 @@ const generatePrimaryRecords = (numberOfRecords, writer, encoding, callback) => 
         title = title.slice(0, -1);
       }
 
-      let data = `${recordId},${author},${stars},${body},${createdAt},${wouldRecommend},${title},${comfort},${style},${productValue},${sizing},${helpfulVotes},${productId}\n`;
+      let data = `${author},${stars},${body},${createdAt},${wouldRecommend},${title},${comfort},${style},${productValue},${sizing},${helpfulVotes},${productId}\n`;
 
       recordId++;
 
@@ -87,7 +87,7 @@ const generatePrimaryRecords = (numberOfRecords, writer, encoding, callback) => 
 }
 
 const writeUsers = fs.createWriteStream('seed-data.csv');
-writeUsers.write('recordId,author,stars,body,createdAt,wouldRecommend,title,comfort,style,value,sizing,helpfulVotes,productId\n', 'utf8');
+writeUsers.write('author,stars,body,createdAt,wouldRecommend,title,comfort,style,value,sizing,helpfulVotes,productId\n', 'utf8');
 
 generatePrimaryRecords(60000000, writeUsers, 'utf-8', () => {
   console.log('Seeding operation complete.')
