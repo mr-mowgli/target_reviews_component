@@ -36,13 +36,7 @@ const generatePrimaryRecords = (numberOfRecords, writer, encoding, callback) => 
     do {
       counter -= 1;
 
-      idCurrentRecordCount++;
-
-      if (idCurrentRecordCount >= idNumberOfRecords) {
-        productId++;
-        idNumberOfRecords = faker.random.number({'min': 2, 'max': 6});
-        idCurrentRecordCount = 1;
-      }
+      productId = faker.random.number({'min': 1, 'max': 10000000});
 
       let author = faker.name.firstName();
       let stars = faker.random.number({'min': 1, 'max': 5}); // 0-5
@@ -67,6 +61,7 @@ const generatePrimaryRecords = (numberOfRecords, writer, encoding, callback) => 
         console.log('Got one! Gratuitous comma #', gratuitousCommas);
         title = title.slice(0, -1);
       }
+      console.log('productId:', productId)
 
       let data = `${author},${stars},${body},${createdAt},${wouldRecommend},${title},${comfort},${style},${productValue},${sizing},${helpfulVotes},${productId}\n`;
 
@@ -86,10 +81,10 @@ const generatePrimaryRecords = (numberOfRecords, writer, encoding, callback) => 
   write();
 }
 
-const writeUsers = fs.createWriteStream('seed-data.csv');
-writeUsers.write('author,stars,body,createdAt,wouldRecommend,title,comfort,style,value,sizing,helpfulVotes,productId\n', 'utf8');
+const writeUsers = fs.createWriteStream('artillery-payload-data.csv');
+writeUsers.write('author,stars,body,createdAt,wouldRecommend,title,comfort,style,productValue,sizing,helpfulVotes,productId\n', 'utf8');
 
-generatePrimaryRecords(60000000, writeUsers, 'utf-8', () => {
+generatePrimaryRecords(10000, writeUsers, 'utf-8', () => {
   console.log('Seeding operation complete.')
   writeUsers.end();
 });

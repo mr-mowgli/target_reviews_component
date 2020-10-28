@@ -41,13 +41,9 @@ const getReviews = (inputId, callback) => {
 }
 
 const postReview = async (params, callback) => {
-  let newIdRow = await pool.query('SELECT recordid FROM reviews ORDER BY recordid DESC LIMIT 1;');
+  const queryString = `INSERT INTO reviews (author, stars, body, createdat, wouldrecommend, title, comfort, style, productvalue, sizing, helpfulvotes, productid) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12) RETURNING recordid, author, stars, body, createdat, wouldrecommend, title, comfort, style, productvalue, sizing, helpfulvotes, productid`;
 
-  let newId = Number(newIdRow.rows[0].recordid) + 1;
-
-  const queryString = `INSERT INTO reviews (recordid, author, stars, body, createdat, wouldrecommend, title, comfort, style, productvalue, sizing, helpfulvotes, productid) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13)`;
-
-  let sqlParams = [ newId, params.author, params.stars, params.body, params.createdAt, params.wouldRecommend, params.title, params.comfort, params.style, params.productValue, params.sizing, params.helpfulVotes, params.productId ];
+  let sqlParams = [ params.author, params.stars, params.body, params.createdAt, params.wouldRecommend, params.title, params.comfort, params.style, params.productValue, params.sizing, params.helpfulVotes, params.productId ];
 
   pool.query(queryString, sqlParams, (err, data) => {
     if (err) {

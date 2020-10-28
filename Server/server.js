@@ -1,3 +1,5 @@
+require('newrelic');
+
 const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
@@ -66,7 +68,21 @@ app.post('/api/reviews', (req, res) => {
       console.error(err);
       res.status(500).send();
     } else {
-      res.send(result);
+      res.status(200).json({
+        _id: result.rows[0].recordid,
+        author: result.rows[0].author,
+        stars: result.rows[0].stars,
+        body: result.rows[0].body,
+        createdAt: result.rows[0].createdat,
+        wouldRecommend: result.rows[0].wouldrecommend,
+        title: result.rows[0].title,
+        comfort: result.rows[0].comfort,
+        style: result.rows[0].style,
+        productValue: result.rows[0].productvalue,
+        sizing: result.rows[0].sizing,
+        helpfulVotes: result.rows[0].helpfulvotes,
+        productId: result.rows[0].productid
+      });
     }
   })
 });
