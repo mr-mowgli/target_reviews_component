@@ -27,7 +27,7 @@ app.use(bodyParser.json());
 app.use(express.static(__dirname + '/../Public'));
 
 app.listen(port, () => {
-  console.log(`Example app listening at http://localhost:${port}`);
+  console.log(`Example app listening at port ${port}`);
 });
 
 app.get('/api/reviews', (req, res) => {
