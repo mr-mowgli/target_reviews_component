@@ -1,4 +1,5 @@
 require('newrelic');
+require('dotenv').config()
 
 const express = require('express');
 const bodyParser = require('body-parser');
@@ -8,9 +9,9 @@ var path = require('path');
 const postgres = require('../DB/postgres');
 
 const app = express();
-const port = 3004;
+const port = process.env.PORT;
 
-const whitelist = ['http://localhost:3004'];
+const whitelist = [process.env.WHITELIST];
 
 var corsOptions = {
   origin: (origin, cb) => {

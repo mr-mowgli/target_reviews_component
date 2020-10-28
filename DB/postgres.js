@@ -1,8 +1,9 @@
 const { Pool } = require('pg');
+require('dotenv').config()
 
 const pool = new Pool({
-  user: 'owenwexler',
-  host: 'localhost',
+  user: process.env.POSTGRES_USER,
+  host: process.env.POSTGRES_HOST,
   database: 'tarjay-reviews',
 });
 
