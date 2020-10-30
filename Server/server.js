@@ -30,6 +30,10 @@ app.listen(port, () => {
   console.log(`Example app listening at port ${port}`);
 });
 
+app.get('/loaderio-*', async (req, res) => {
+  res.status(200).send(req.originalUrl.slice(1, -1));
+});
+
 app.get('/api/reviews', (req, res) => {
   postgres.getReviews(0, (err, results) => {
     if (err) {
@@ -110,3 +114,5 @@ app.delete('/api/reviews/:id', (req, res) => {
       }
     })
 })
+
+
