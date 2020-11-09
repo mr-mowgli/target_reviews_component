@@ -1,18 +1,26 @@
-# target_reviews_component
+# Tarjay Reviews Component
 
-This service provides the reviews component of a Target item page.
+This service provides the reviews component of an item page for Tarjay.
 
 To start this service:
 
-Install dependancies via "npm install"
+Install dependancies - "npm install"
 
-Start the server via "npm start"
+Start the server - "npm start"
 
-In another terminal window, seed the database by typing "npm run db:seed"
+Seed the database - "npm run db:seed"
 
-Have webpack watch the files via "npm run build"
+To watch the client files - "npm run build"
 
 Reviews should now be rendered on port 3001.
+
+# Associated Services
+
+Product Options - https://github.com/mr-mowgli/productOptions
+
+Image Carousel - https://github.com/mr-mowgli/image_carousel
+
+Recommended Products - https://github.com/mr-mowgli/recommendedProducts
 
 # API Endpoints
 
@@ -24,6 +32,6 @@ GET - '/api/reviews/:id' - get one review by ID, as JSON
 
 POST - '/api/reviews' - post a review (full JSON body required)
 
-PUT - '/api/reviews/:id' - update one review, by ID (JSON body reaturing just the changes required)
+PUT - '/api/reviews/:id' - update one review, by ID (JSON body featuring just the changes required)
 
 DELETE - '/api/reviews/:id' - delete one review, by ID
