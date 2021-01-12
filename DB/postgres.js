@@ -9,14 +9,19 @@ const pool = new Pool({
 });
 
 const getReviews = (inputId, callback) => {
-  let queryString = `SELECT recordid, author, stars, body, createdat, wouldrecommend, title, comfort, style, productvalue, sizing, helpfulvotes, productid FROM reviews WHERE productid=${inputId}`;
+  let queryString;
+  let params = [];
 
   if (inputId === 0) {
     queryString = `SELECT recordid, author, stars, body, createdat, wouldrecommend, title, comfort, style, productvalue, sizing, helpfulvotes, productid FROM reviews`;
+  } else {
+    queryString = `SELECT recordid, author, stars, body, createdat, wouldrecommend, title, comfort, style, productvalue, sizing, helpfulvotes, productid FROM reviews WHERE productid=$1`;
+
+    params = [inputId];
   }
 
   (async () => {
-    const {rows} = await pool.query(queryString);
+    const {rows} = await pool.query(queryString, params);
     let reviews = [];
     for (review of rows) {
       reviews.push({
@@ -57,9 +62,11 @@ const postReview = async (params, callback) => {
 }
 
 const deleteReview = (inputId, callback)=> {
-  const queryString = `DELETE FROM reviews WHERE recordid = ${inputId}`;
+  const queryString = 'DELETE FROM reviews WHERE recordid = $1';
 
-  pool.query(queryString, (err, data) => {
+  const params = [inputId];
+
+  pool.query(queryString, inputId, (err, data) => {
     if (err) {
       callback(err, null);
     } else {
@@ -69,7 +76,9 @@ const deleteReview = (inputId, callback)=> {
 }
 
 const editReview = (inputId, updateObj, callback) => {
-  const queryString = `UPDATE reviews SET stars = ${updateObj.stars}, body = ${updateObj.body}, wouldrecommend = ${updateObj.wouldRecommend}, title = ${updateObj.title}, comfort = ${updateObj.comfort}, style = ${updateObj.style}, productvalue = ${productValue}, sizing = ${updateObj.sizing} WHERE recordid = ${inputId}`;
+  const queryString = 'UPDATE reviews SET stars = $1, body = $2, wouldrecommend = $3, title = $4, comfort = $5, style = $6, productvalue = $7, sizing = $8 WHERE recordid = $9';
+
+  const params = [updateObj.stars, updateObj.body, updateObj.wouldRecommend, updateObj.title, updateObj.comfort, updateObj.style, productValue, updateObj.sizing, inputId];
 
   pool.query(queryString, (err, data) => {
     if (err) {

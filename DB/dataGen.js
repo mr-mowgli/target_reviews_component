@@ -64,7 +64,6 @@ const generatePrimaryRecords = (numberOfRecords, writer, encoding, callback) => 
 
       if (title[title.length - 1] === ',') {
         gratuitousCommas++;
-        console.log('Got one! Gratuitous comma #', gratuitousCommas);
         title = title.slice(0, -1);
       }
 

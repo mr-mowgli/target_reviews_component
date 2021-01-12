@@ -6,10 +6,8 @@
   "scripts": {
     "start": "nodemon server.js",
     "build": "webpack -d --watch",
-    "db:seed": "node DB/seed.js",
-    "test": "jest",
-    "db:delete": "node DB/deleteData.js",
-    "db:view": "node DB/viewData.js"
+    "db:seed": "node DB/dataGen.js",
+    "test": "jest"
   },
   "author": "Jason Strunk",
   "license": "ISC",

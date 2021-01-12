@@ -38,7 +38,7 @@ class Reviews extends React.Component {
 
       })
   }
-  // ==== NOT VERY DRY ==== //
+
   sortReviews(data, option) {
     if (option === 'most recent') {
     return data.sort(function compare(a, b) {
